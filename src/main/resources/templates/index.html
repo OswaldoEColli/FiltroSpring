@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Mensajes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 8px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+<h1>Sistema de Filtrado de Mensajes</h1>
+
+<form th:action="@{/process}" th:object="${message}" method="post">
+    <div class="form-group">
+        <label for="messageContent">Escribe tu mensaje:</label>
+        <textarea id="messageContent" th:field="*{content}" placeholder="Escribe aquí tu mensaje..."></textarea>
+    </div>
+    <button type="submit">Filtrar Mensaje</button>
+</form>
+
+<div class="result" th:if="${filteredMessage}">
+    <h3>Mensaje Filtrado:</h3>
+    <p th:text="${filteredMessage}"></p>
+</div>
+</body>
+</html>
